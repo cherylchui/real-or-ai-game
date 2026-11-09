@@ -1,38 +1,38 @@
 const questions = [
   {
     image: "q1.jpg",
-    answer: "ai",
+    answer: "real",
     difficulty: "EASY",
-    clue: "Look closely at the face, hair and skin texture.",
+    clue: "Look at the overall consistency of the image.",
     explanation:
-      "AI images can sometimes have overly smooth textures or small inconsistencies around detailed areas."
+      "This is a real photograph. Natural photographs can still contain unusual lighting, blur or imperfections, so one unusual detail alone does not mean an image is AI-generated."
   },
 
   {
     image: "q2.jpg",
-    answer: "real",
+    answer: "ai",
     difficulty: "EASY - MEDIUM",
-    clue: "Look at the hands and how objects interact.",
+    clue: "Look closely at the small details.",
     explanation:
-      "Check whether fingers, objects, lighting and physical contact appear natural and consistent."
+      "This image is AI-generated. Look for details that appear inconsistent, distorted or physically unnatural."
   },
 
   {
     image: "q3.jpg",
-    answer: "ai",
+    answer: "real",
     difficulty: "MEDIUM",
-    clue: "Examine the small background details.",
+    clue: "Look at the whole image, not just one detail.",
     explanation:
-      "AI-generated scenes may contain objects that merge together, repeat strangely or have inconsistent geometry."
+      "This is a real photograph. Real photos can contain unusual shadows, reflections, blur and imperfections that may sometimes look artificial."
   },
 
   {
     image: "q4.jpg",
-    answer: "real",
+    answer: "ai",
     difficulty: "HARD",
-    clue: "Don't rely on only one visual clue.",
+    clue: "👆 Look carefully at the fingers.",
     explanation:
-      "Modern AI-generated images can be extremely convincing. When authenticity matters, also consider the image source and context."
+      "This image is AI-generated. Look closely at the fingers. Unusual finger shapes, positioning or interaction with objects can be a clue that an image may have been AI-generated."
   }
 ];
 

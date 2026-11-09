@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real or AI?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="game-container">
+
+  <div id="start-screen" class="card">
+    <div class="event-label">AI ENGAGEMENT EVENT</div>
+    <h1>REAL OR AI?</h1>
+    <p class="subtitle">Can you spot what's real and what's AI-generated?</p>
+
+    <p>
+      You will see 4 images. Look carefully and decide whether
+      each image is a real photograph or AI-generated.
+    </p>
+
+    <button class="start-btn" onclick="startGame()">
+      START THE CHALLENGE
+    </button>
+  </div>
+
+
+  <div id="game-screen" class="card hidden">
+
+    <div class="game-header">
+      <span id="question-number">Question 1 of 4</span>
+      <span id="score">Score: 0</span>
+    </div>
+
+    <div class="progress">
+      <div id="progress-bar"></div>
+    </div>
+
+    <div id="difficulty" class="difficulty">EASY</div>
+
+    <img id="game-image" src="" alt="Game challenge image">
+
+    <h2>Real or AI?</h2>
+
+    <div class="answer-buttons">
+      <button id="real-btn" onclick="submitAnswer('real')">
+        REAL PHOTO
+      </button>
+
+      <button id="ai-btn" onclick="submitAnswer('ai')">
+        AI GENERATED
+      </button>
+    </div>
+
+
+    <div id="result-box" class="result hidden">
+
+      <h2 id="result-title"></h2>
+
+      <h3 id="answer-reveal"></h3>
+
+      <div class="clue-box">
+        <strong>🔍 What should you look for?</strong>
+
+        <p id="clue"></p>
+        <p id="explanation"></p>
+
+        <small>
+          Remember: visual clues are indicators, not definitive proof.
+        </small>
+      </div>
+
+      <button id="next-btn" class="next-btn" onclick="nextQuestion()">
+        NEXT QUESTION →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div id="final-screen" class="card hidden">
+
+    <div class="event-label">CHALLENGE COMPLETE</div>
+
+    <h1>YOUR AI EYE SCORE</h1>
+
+    <div id="final-score" class="final-score"></div>
+
+    <h2 id="final-title"></h2>
+
+    <p id="final-message"></p>
+
+    <div class="tips">
+      <h3>🔍 Remember These AI Clues</h3>
+
+      <p>👋 <strong>Hands:</strong> Check fingers and object interactions.</p>
+      <p>🔤 <strong>Text:</strong> Look for distorted or meaningless lettering.</p>
+      <p>🪞 <strong>Reflections:</strong> Check whether lighting and reflections make sense.</p>
+      <p>🏙️ <strong>Background:</strong> Look for merged or repeated objects.</p>
+      <p>🔎 <strong>Source:</strong> When authenticity matters, verify where the image came from.</p>
+    </div>
+
+    <button class="start-btn" onclick="restartGame()">
+      PLAY AGAIN
+    </button>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

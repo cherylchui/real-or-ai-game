@@ -1,74 +1,74 @@
-}
-
-
 /* ========================================
-   RESPONSIVE
+   GLOBAL
 ======================================== */
 
-@media (max-width: 650px) {
+:root {
+  --navy: #14213d;
+  --blue: #2563eb;
+  --purple: #7c3aed;
+  --cyan: #06b6d4;
 
-  body {
-    padding: 16px 10px;
-  }
+  --green: #15803d;
+  --green-light: #ecfdf3;
 
+  --red: #b91c1c;
+  --red-light: #fff1f2;
 
-  .card {
-    padding: 24px 18px;
+  --background: #f4f7fc;
+  --card: #ffffff;
 
-    border-radius: 18px;
-  }
+  --text: #172033;
+  --secondary-text: #64748b;
 
-
-  .start-info {
-    gap: 7px;
-  }
-
-
-  .start-info div {
-    padding: 13px 4px;
-  }
-
-
-  .start-info strong {
-    font-size: 21px;
-  }
-
-
-  .game-header {
-    font-size: 12px;
-  }
-
-
-  .answer-buttons {
-    grid-template-columns: 1fr;
-  }
-
-
-  .answer-btn {
-    width: 100%;
-  }
-
-
-  .tips-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  #game-image {
-    max-height: 440px;
-  }
-
+  --border: #e3e8f2;
 }
 
 
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-
-    transition: none !important;
-  }
-
+* {
+  box-sizing: border-box;
 }
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  padding: 35px 16px;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.09),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(124, 58, 237, 0.08),
+      transparent 30%
+    ),
+    var(--background);
+}
+
+
+button {
+  font-family: inherit;
+}
+
+
+button:focus-visible {
+  outline: 4px solid rgba(37, 99, 235, 0.25);

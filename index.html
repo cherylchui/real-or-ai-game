@@ -3,338 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>AI Mini Challenge | Real or AI?</title>
-
+  <title>Real or AI?</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <main class="game-container">
+<div class="game-container">
 
-    <!-- =========================
-         START SCREEN
-    ========================== -->
-    <section id="start-screen" class="card start-screen">
+  <!-- START SCREEN -->
+  <div id="start-screen" class="card">
 
-      <div class="event-label">AI MINI CHALLENGE</div>
+    <div class="event-label">AI MINI CHALLENGE</div>
 
-      <div class="hero-icon">✨</div>
+    <h1>REAL OR AI?</h1>
 
-      <h1>REAL OR AI?</h1>
+    <p class="subtitle">
+      Can you tell what's real and what's AI-generated?
+    </p>
 
-      <p class="subtitle">
-        Can you tell what's real and what's AI-generated?
-      </p>
+    <p>
+      You will see 10 images, from easy to expert.
+      Look carefully and decide whether each image is
+      a real photograph or AI-generated.
+    </p>
 
-      <p class="intro-text">
-        You will see 10 images, from easy to expert.
-        Look carefully and decide whether each image is
-        a real photograph or AI-generated.
-      </p>
+    <button class="start-btn" onclick="startGame()">
+      START THE CHALLENGE
+    </button>
 
-      <div class="start-info">
-        <div>
-          <strong>10</strong>
-          <span>Images</span>
-        </div>
+  </div>
 
-        <div>
-          <strong>2</strong>
-          <span>Choices</span>
-        </div>
 
-        <div>
-          <strong>1</strong>
-          <span>AI Eye Score</span>
-        </div>
-      </div>
+  <!-- GAME SCREEN -->
+  <div id="game-screen" class="card hidden">
+
+    <div class="game-header">
+
+      <span id="question-number">
+        Question 1 of 10
+      </span>
+
+      <span id="score">
+        Score: 0
+      </span>
+
+    </div>
+
+
+    <div class="progress">
+      <div id="progress-bar"></div>
+    </div>
+
+
+    <div id="difficulty" class="difficulty">
+      EASY
+    </div>
+
+
+    <img
+      id="game-image"
+      src=""
+      alt="Real or AI challenge image"
+    >
+
+
+    <h2>Real or AI?</h2>
+
+
+    <div class="answer-buttons">
 
       <button
-        id="start-btn"
-        class="primary-btn"
-        type="button"
+        id="real-btn"
+        onclick="submitAnswer('real')"
       >
-        START THE CHALLENGE
+        📷 REAL PHOTO
       </button>
 
-      <p class="small-note">
-        Look closely. Visual clues can help, but one clue alone
-        may not prove whether an image is AI-generated.
-      </p>
 
-    </section>
-
-
-    <!-- =========================
-         GAME SCREEN
-    ========================== -->
-    <section id="game-screen" class="card hidden">
-
-      <header class="game-header">
-
-        <div>
-          <span id="question-number">
-            Question 1 of 10
-          </span>
-        </div>
-
-        <div id="score" class="score">
-          Score: 0
-        </div>
-
-      </header>
-
-
-      <!-- Progress bar -->
-      <div
-        class="progress"
-        role="progressbar"
-        aria-label="Game progress"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        aria-valuenow="10"
+      <button
+        id="ai-btn"
+        onclick="submitAnswer('ai')"
       >
-        <div id="progress-bar"></div>
-      </div>
+        ✨ AI GENERATED
+      </button>
+
+    </div>
 
 
-      <div class="question-meta">
+    <!-- RESULT -->
+    <div
+      id="result-box"
+      class="result hidden"
+    >
 
-        <span id="difficulty" class="difficulty">
-          EASY
-        </span>
+      <h2 id="result-title"></h2>
 
-      </div>
-
-
-      <!-- Image -->
-      <div class="image-wrapper">
-
-        <img
-          id="game-image"
-          src=""
-          alt="Image for the Real or AI challenge"
-        >
-
-        <div id="image-error" class="image-error hidden">
-          Image could not be loaded.
-        </div>
-
-      </div>
+      <h3 id="answer-reveal"></h3>
 
 
-      <h2 class="question-title">
-        Real or AI?
-      </h2>
+      <div class="clue-box">
 
-      <p class="question-instruction">
-        Take a close look before making your choice.
-      </p>
+        <strong>
+          🔍 SPOT THE CLUE
+        </strong>
 
+        <p id="clue"></p>
 
-      <!-- Answer Buttons -->
-      <div class="answer-buttons">
+        <p id="explanation"></p>
 
-        <button
-          id="real-btn"
-          class="answer-btn real-btn"
-          type="button"
-        >
-          <span class="answer-icon">📷</span>
-          <span>REAL PHOTO</span>
-        </button>
+        <small>
+          Remember: visual clues are indicators,
+          not definitive proof.
+        </small>
 
-        <button
-          id="ai-btn"
-          class="answer-btn ai-btn"
-          type="button"
-        >
-          <span class="answer-icon">✨</span>
-          <span>AI GENERATED</span>
-        </button>
-
-      </div>
-
-
-      <!-- Answer Reveal -->
-      <div
-        id="result-box"
-        class="result hidden"
-        aria-live="polite"
-      >
-
-        <div id="result-banner" class="result-banner">
-
-          <h2 id="result-title"></h2>
-
-          <p id="answer-reveal"></p>
-
-        </div>
-
-
-        <div class="clue-box">
-
-          <div class="clue-title">
-            🔍 SPOT THE CLUE
-          </div>
-
-          <p id="clue" class="clue-main"></p>
-
-          <p id="explanation"></p>
-
-          <div class="reminder-box">
-            <strong>Remember:</strong>
-            Visual clues are indicators, not definitive proof.
-          </div>
-
-        </div>
-
-
-        <button
-          id="next-btn"
-          class="primary-btn next-btn"
-          type="button"
-        >
-          NEXT QUESTION →
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         FINAL RESULT
-    ========================== -->
-    <section id="final-screen" class="card hidden">
-
-      <div class="event-label">
-        CHALLENGE COMPLETE
-      </div>
-
-      <div class="trophy">
-        🏆
-      </div>
-
-      <h1>YOUR AI EYE SCORE</h1>
-
-      <div id="final-score" class="final-score">
-        0 / 10
-      </div>
-
-      <div id="accuracy" class="accuracy">
-        0% accuracy
-      </div>
-
-      <h2 id="final-title"></h2>
-
-      <p id="final-message" class="final-message"></p>
-
-
-      <!-- Learning Summary -->
-      <div class="learning-section">
-
-        <h2>🔍 HOW TO ASSESS AN IMAGE</h2>
-
-        <div class="tips-grid">
-
-          <div class="tip-card">
-            <span>👋</span>
-            <div>
-              <strong>Hands & Fingers</strong>
-              <p>
-                Check finger shapes, joints and how hands interact
-                with objects.
-              </p>
-            </div>
-          </div>
-
-          <div class="tip-card">
-            <span>🔤</span>
-            <div>
-              <strong>Text & Signs</strong>
-              <p>
-                Look for distorted, meaningless or inconsistent
-                lettering.
-              </p>
-            </div>
-          </div>
-
-          <div class="tip-card">
-            <span>👀</span>
-            <div>
-              <strong>Faces & Details</strong>
-              <p>
-                Look closely at hair, fine details and unusual
-                visual inconsistencies.
-              </p>
-            </div>
-          </div>
-
-          <div class="tip-card">
-            <span>🪞</span>
-            <div>
-              <strong>Reflections & Shadows</strong>
-              <p>
-                Check whether lighting, reflections and shadows
-                make physical sense.
-              </p>
-            </div>
-          </div>
-
-          <div class="tip-card">
-            <span>🏙️</span>
-            <div>
-              <strong>Background Details</strong>
-              <p>
-                Look for merged objects, repeated patterns or
-                impossible geometry.
-              </p>
-            </div>
-          </div>
-
-          <div class="tip-card">
-            <span>🔎</span>
-            <div>
-              <strong>Source & Context</strong>
-              <p>
-                When authenticity matters, check where the image
-                came from rather than relying only on visual clues.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="closing-message">
-        AI images are becoming increasingly realistic.
-        <strong>Look carefully, think critically and check the source.</strong>
       </div>
 
 
       <button
-        id="restart-btn"
-        class="primary-btn"
-        type="button"
+        id="next-btn"
+        class="next-btn"
+        onclick="nextQuestion()"
       >
-        ↻ PLAY AGAIN
+        NEXT QUESTION →
       </button>
 
-    </section>
+    </div>
 
-  </main>
+  </div>
 
 
-  <!-- IMPORTANT:
-       JavaScript stays in script.js.
-       Do NOT paste JavaScript directly into this file.
-  -->
-  <script src="script.js"></script>
+  <!-- FINAL SCREEN -->
+  <div
+    id="final-screen"
+    class="card hidden"
+  >
+
+    <div class="event-label">
+      CHALLENGE COMPLETE
+    </div>
+
+    <h1>
+      YOUR AI EYE SCORE
+    </h1>
+
+
+    <div
+      id="final-score"
+      class="final-score"
+    >
+    </div>
+
+
+    <h2 id="final-title"></h2>
+
+    <p id="final-message"></p>
+
+
+    <div class="tips">
+
+      <h3>
+        🔍 How to Spot AI Images
+      </h3>
+
+      <p>
+        👋 <strong>Hands & fingers:</strong>
+        Check shapes, joints and object interactions.
+      </p>
+
+      <p>
+        🔤 <strong>Text & signs:</strong>
+        Look for distorted or meaningless lettering.
+      </p>
+
+      <p>
+        👀 <strong>Faces & details:</strong>
+        Look closely at hair, eyes and fine details.
+      </p>
+
+      <p>
+        🪞 <strong>Reflections & shadows:</strong>
+        Check whether lighting and reflections make sense.
+      </p>
+
+      <p>
+        🏙️ <strong>Background:</strong>
+        Look for merged, repeated or inconsistent objects.
+      </p>
+
+      <p>
+        🔎 <strong>Source:</strong>
+        When authenticity matters, check where
+        the image came from.
+      </p>
+
+    </div>
+
+
+    <button
+      class="start-btn"
+      onclick="restartGame()"
+    >
+      PLAY AGAIN
+    </button>
+
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>

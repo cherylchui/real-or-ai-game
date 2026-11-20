@@ -1,117 +1,281 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real or AI?</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+const questions = [
+  {
+    image: "q1.jpg",
+    answer: "real",
+    difficulty: "EASY",
+    clue: "Look carefully at the overall consistency of the image.",
+    explanation:
+      "This is a real photograph. Natural photos can still contain unusual lighting, blur or imperfections, so one unusual detail alone does not mean an image is AI-generated."
+  },
 
-<body>
+  {
+    image: "q2.jpg",
+    answer: "ai",
+    difficulty: "EASY",
+    clue: "Look closely at the small details.",
+    explanation:
+      "This image is AI-generated. Look for details that appear inconsistent, distorted or physically unnatural."
+  },
 
-<div class="game-container">
+  {
+    image: "q3.jpg",
+    answer: "real",
+    difficulty: "EASY - MEDIUM",
+    clue: "Look at the whole image, not just one unusual detail.",
+    explanation:
+      "This is a real photograph. Real photos can contain unusual shadows, reflections, blur or other photographic imperfections that may sometimes look artificial."
+  },
 
-  <div id="start-screen" class="card">
-    <div class="event-label">AI MINI CHALLENGE</div>
-    <h1>REAL OR AI?</h1>
-    <p class="subtitle">Can you spot what's real and what's AI-generated?</p>
+  {
+    image: "q4.jpg",
+    answer: "ai",
+    difficulty: "MEDIUM",
+    clue: "👆 Look carefully at the fingers.",
+    explanation:
+      "This image is AI-generated. Look closely at the fingers. Unusual finger shapes, positioning or interaction with objects can be a useful AI warning sign."
+  },
 
-    <p>
-      You will see 4 images. Look carefully and decide whether
-      each image is a real photograph or AI-generated.
-    </p>
+  {
+    image: "q5.jpg",
+    answer: "real",
+    difficulty: "MEDIUM",
+    clue: "Look carefully at the overall consistency of the image.",
+    explanation:
+      "This is a real photograph. Natural photos can contain imperfect lighting, textures and details. A strange-looking feature alone does not prove that an image is AI-generated."
+  },
 
-    <button class="start-btn" onclick="startGame()">
-      START THE CHALLENGE
-    </button>
-  </div>
+  {
+    image: "q6.jpg",
+    answer: "ai",
+    difficulty: "MEDIUM",
+    clue: "Look closely at the fine details.",
+    explanation:
+      "This image is AI-generated. Look for small details that appear inconsistent, distorted, repeated or physically unusual."
+  },
 
+  {
+    image: "q7.jpg",
+    answer: "ai",
+    difficulty: "MEDIUM - HARD",
+    clue: "Look beyond the main subject and examine the background.",
+    explanation:
+      "This image is AI-generated. Background details can reveal unusual shapes, repeated patterns or visual inconsistencies that are easy to overlook."
+  },
 
-  <div id="game-screen" class="card hidden">
+  {
+    image: "q8.jpg",
+    answer: "real",
+    difficulty: "HARD",
+    clue: "Check whether the details remain physically consistent.",
+    explanation:
+      "This is a real photograph. Real photos can still contain unusual perspectives, reflections, shadows and photographic imperfections, so examine the whole image before deciding."
+  },
 
-    <div class="game-header">
-      <span id="question-number">Question 1 of 4</span>
-      <span id="score">Score: 0</span>
-    </div>
+  {
+    image: "q9.jpg",
+    answer: "ai",
+    difficulty: "HARD",
+    clue: "Look carefully at the lighting, shadows and reflections.",
+    explanation:
+      "This image is AI-generated. Subtle inconsistencies in lighting, reflections, shadows or the relationship between objects can provide useful clues."
+  },
 
-    <div class="progress">
-      <div id="progress-bar"></div>
-    </div>
-
-    <div id="difficulty" class="difficulty">EASY</div>
-
-    <img id="game-image" src="" alt="Game challenge image">
-
-    <h2>Real or AI?</h2>
-
-    <div class="answer-buttons">
-      <button id="real-btn" onclick="submitAnswer('real')">
-        REAL PHOTO
-      </button>
-
-      <button id="ai-btn" onclick="submitAnswer('ai')">
-        AI GENERATED
-      </button>
-    </div>
-
-
-    <div id="result-box" class="result hidden">
-
-      <h2 id="result-title"></h2>
-
-      <h3 id="answer-reveal"></h3>
-
-      <div class="clue-box">
-        <strong>🔍 What should you look for?</strong>
-
-        <p id="clue"></p>
-        <p id="explanation"></p>
-
-        <small>
-          Remember: visual clues are indicators, not definitive proof.
-        </small>
-      </div>
-
-      <button id="next-btn" class="next-btn" onclick="nextQuestion()">
-        NEXT QUESTION →
-      </button>
-
-    </div>
-
-  </div>
+  {
+    image: "q10.jpg",
+    answer: "ai",
+    difficulty: "EXPERT",
+    clue: "Look for very subtle inconsistencies.",
+    explanation:
+      "This image is AI-generated. Highly realistic AI images may contain very few obvious mistakes. Examine fine details and physical consistency, and remember that source verification is important when authenticity matters."
+  }
+];
 
 
-  <div id="final-screen" class="card hidden">
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
 
-    <div class="event-label">CHALLENGE COMPLETE</div>
 
-    <h1>YOUR AI EYE SCORE</h1>
+function startGame() {
+  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("final-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.remove("hidden");
 
-    <div id="final-score" class="final-score"></div>
+  currentQuestion = 0;
+  score = 0;
+  answered = false;
 
-    <h2 id="final-title"></h2>
+  showQuestion();
+}
 
-    <p id="final-message"></p>
 
-    <div class="tips">
-      <h3>🔍 Remember These AI Clues</h3>
+function showQuestion() {
+  answered = false;
 
-      <p>👋 <strong>Hands:</strong> Check fingers and object interactions.</p>
-      <p>🔤 <strong>Text:</strong> Look for distorted or meaningless lettering.</p>
-      <p>🪞 <strong>Reflections:</strong> Check whether lighting and reflections make sense.</p>
-      <p>🏙️ <strong>Background:</strong> Look for merged or repeated objects.</p>
-      <p>🔎 <strong>Source:</strong> When authenticity matters, verify where the image came from.</p>
-    </div>
+  const question = questions[currentQuestion];
 
-    <button class="start-btn" onclick="restartGame()">
-      PLAY AGAIN
-    </button>
+  document.getElementById("question-number").textContent =
+    `Question ${currentQuestion + 1} of ${questions.length}`;
 
-  </div>
+  document.getElementById("score").textContent =
+    `Score: ${score}`;
 
-</div>
+  document.getElementById("difficulty").textContent =
+    question.difficulty;
 
-<script src="script.js"></script>
+  document.getElementById("game-image").src =
+    question.image;
 
-</body>
-</html>
+  document.getElementById("progress-bar").style.width =
+    `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+  document.getElementById("result-box").classList.add("hidden");
+
+  document.getElementById("real-btn").disabled = false;
+  document.getElementById("ai-btn").disabled = false;
+}
+
+
+function submitAnswer(selectedAnswer) {
+
+  if (answered) return;
+
+  answered = true;
+
+  const question = questions[currentQuestion];
+
+  document.getElementById("real-btn").disabled = true;
+  document.getElementById("ai-btn").disabled = true;
+
+  if (selectedAnswer === question.answer) {
+
+    score++;
+
+    document.getElementById("result-title").textContent =
+      "✓ CORRECT!";
+
+    document.getElementById("result-title").style.color =
+      "#15803d";
+
+  } else {
+
+    document.getElementById("result-title").textContent =
+      "✕ NOT QUITE";
+
+    document.getElementById("result-title").style.color =
+      "#b91c1c";
+  }
+
+  document.getElementById("score").textContent =
+    `Score: ${score}`;
+
+  document.getElementById("answer-reveal").textContent =
+    question.answer === "ai"
+      ? "THIS IMAGE IS AI-GENERATED"
+      : "THIS IS A REAL PHOTO";
+
+  document.getElementById("clue").textContent =
+    question.clue;
+
+  document.getElementById("explanation").textContent =
+    question.explanation;
+
+  document.getElementById("result-box").classList.remove("hidden");
+
+  document.getElementById("next-btn").textContent =
+    currentQuestion === questions.length - 1
+      ? "VIEW MY RESULTS →"
+      : "NEXT QUESTION →";
+}
+
+
+function nextQuestion() {
+
+  if (!answered) return;
+
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+
+    showQuestion();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  } else {
+
+    showResults();
+  }
+}
+
+
+function showResults() {
+
+  document.getElementById("game-screen").classList.add("hidden");
+  document.getElementById("final-screen").classList.remove("hidden");
+
+  document.getElementById("final-score").textContent =
+    `${score} / ${questions.length}`;
+
+  let title;
+  let message;
+
+  if (score <= 3) {
+
+    title = "AI APPRENTICE 👀";
+
+    message =
+      "AI fooled you this time. Keep looking closely and sharpen your AI eye!";
+
+  } else if (score <= 6) {
+
+    title = "AI DETECTIVE 🔍";
+
+    message =
+      "Good effort! You're starting to recognize the clues.";
+
+  } else if (score <= 8) {
+
+    title = "AI SPOTTER 🕵️";
+
+    message =
+      "Great eye! You're getting good at spotting subtle AI clues.";
+
+  } else {
+
+    title = "AI MASTER 🏆";
+
+    message =
+      "Excellent! You spotted even the most convincing images.";
+  }
+
+  document.getElementById("final-title").textContent =
+    title;
+
+  document.getElementById("final-message").textContent =
+    message;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+function restartGame() {
+
+  document.getElementById("final-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.add("hidden");
+  document.getElementById("start-screen").classList.remove("hidden");
+
+  currentQuestion = 0;
+  score = 0;
+  answered = false;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}

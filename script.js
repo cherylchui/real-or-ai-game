@@ -1,15 +1,16 @@
 const questions = [
 
-  {
-    image: "q1.jpg",
-    answer: "real",
+{
+  image: "q1.jpg",
+  answer: "ai",
+  difficulty: "EASY",
 
-    clue:
-      "Look carefully at the overall image and its small details.",
+  clue:
+    "🔤 Look closely at the text and font style.",
 
-    explanation:
-      "This is a real photograph. Natural photos can still contain unusual lighting, textures or imperfections, so one strange-looking detail does not automatically mean an image is AI-generated."
-  },
+  explanation:
+    "This image is AI-generated. Notice how some letters and font styles appear distorted, inconsistent or unnatural. AI-generated images may contain unusual lettering, irregular spacing or text that does not form meaningful words."
+},
 
 
   {

@@ -3,7 +3,6 @@ const questions = [
   {
     image: "q1.jpg",
     answer: "real",
-    difficulty: "EASY",
 
     clue:
       "Look carefully at the overall image and its small details.",
@@ -16,7 +15,6 @@ const questions = [
   {
     image: "q2.jpg",
     answer: "ai",
-    difficulty: "EASY",
 
     clue:
       "Look closely at the small details.",
@@ -29,7 +27,6 @@ const questions = [
   {
     image: "q3.jpg",
     answer: "real",
-    difficulty: "EASY - MEDIUM",
 
     clue:
       "Look at the whole image, not just one detail.",
@@ -42,7 +39,6 @@ const questions = [
   {
     image: "q4.jpg",
     answer: "ai",
-    difficulty: "MEDIUM",
 
     clue:
       "👆 Look carefully at the fingers.",
@@ -55,7 +51,6 @@ const questions = [
   {
     image: "q5.jpg",
     answer: "real",
-    difficulty: "MEDIUM",
 
     clue:
       "Look carefully at the overall consistency of the image.",
@@ -68,7 +63,6 @@ const questions = [
   {
     image: "q6.jpg",
     answer: "ai",
-    difficulty: "MEDIUM",
 
     clue:
       "Look closely at the fine details.",
@@ -81,7 +75,6 @@ const questions = [
   {
     image: "q7.jpg",
     answer: "ai",
-    difficulty: "MEDIUM - HARD",
 
     clue:
       "Look beyond the main subject and examine the background.",
@@ -94,7 +87,6 @@ const questions = [
   {
     image: "q8.jpg",
     answer: "real",
-    difficulty: "HARD",
 
     clue:
       "Check whether the details remain physically consistent.",
@@ -107,7 +99,6 @@ const questions = [
   {
     image: "q9.jpg",
     answer: "ai",
-    difficulty: "HARD",
 
     clue:
       "Look carefully at lighting, shadows and reflections.",
@@ -120,7 +111,6 @@ const questions = [
   {
     image: "q10.jpg",
     answer: "ai",
-    difficulty: "EXPERT",
 
     clue:
       "Look for very subtle inconsistencies.",

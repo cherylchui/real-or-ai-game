@@ -448,3 +448,8 @@ function restartGame() {
     0
   );
 }
+
+/* Hide difficulty labels for all questions */
+.difficulty {
+  display: none !important;
+}

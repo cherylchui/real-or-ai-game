@@ -189,12 +189,6 @@ function showQuestion() {
 
 
   document
-    .getElementById("difficulty")
-    .textContent =
-      question.difficulty;
-
-
-  document
     .getElementById("game-image")
     .src =
       question.image;
